@@ -1,16 +1,16 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour {
+    public Vector3 RightAxis { get;  private set; }
     [SerializeField] private Camera _camera;
-
-    public Vector3 GetWorldPosition(Vector2 position) {
-        Ray ray = _camera.ScreenPointToRay(position);
-        var isPlaneIntersected = ray.HitOnPlane(Vector3.up, out Vector3 hit);
-        return isPlaneIntersected ? hit : Vector3.zero;
+    
+    private void Start() {
+        RightAxis = transform.right;
     }
 
-    public Vector3 CoarseDirection(Vector2 position) {
-        Vector3 worldDirection = new Vector3(position.x, 0f, position.y);
-        return worldDirection.CoarseIn(_camera.transform.forward, Vector3.up);
+    public bool Raycast(Vector2 position, out Vector3 hit) {
+        Ray ray = _camera.ScreenPointToRay(position);
+        return ray.Raycast(Vector3.up, out hit);
     }
 }

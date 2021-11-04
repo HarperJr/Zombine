@@ -3,7 +3,7 @@ using UnityEngine;
 
 public static class VectorExt {
 
-    public static bool HitOnPlane(this Ray ray, Vector3 normal, out Vector3 hit) {
+    public static bool Raycast(this Ray ray, Vector3 normal, out Vector3 hit) {
         float denominator = Vector3.Dot(normal, ray.direction);
         if (Math.Abs(denominator) >= 0.0001f) {
             Vector3 difference = normal - ray.origin;

@@ -8,7 +8,7 @@ public class Movable : MonoBehaviour {
     }
 
     public void MoveTo(Vector3 position, float time) {
-        _transform.MoveTo(position, time);
+       
     }
 
     public void Move(Vector3 delta, float time) {
